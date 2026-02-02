@@ -1,0 +1,11 @@
+{
+    "tasks": [
+        {
+            "id": "setup-verification",
+            "title": "Verify ACT Setup",
+            "description": "Ensure worktree creation and agent delegation tools are working correctly.",
+            "status": "pending",
+            "priority": "high"
+        }
+    ]
+}

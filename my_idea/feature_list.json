@@ -1,0 +1,44 @@
+{
+    "meta": {
+        "version": "1.0.0",
+        "status": "template",
+        "context": "Autonomous Coding Template (ACT) Setup"
+    },
+    "features": [
+        {
+            "id": "ACT-001",
+            "title": "Initialization Scripts",
+            "description": "Create 'scripts/init_env.sh' to scaffold git worktrees and link shared memory (RULES.md).",
+            "status": "completed",
+            "priority": "critical"
+        },
+        {
+            "id": "ACT-002",
+            "title": "Workflow Definitions",
+            "description": "Define markdown instructions for Planner, Builder, and Reviewer roles in 'workflow/'.",
+            "status": "completed",
+            "priority": "critical"
+        },
+        {
+            "id": "ACT-003",
+            "title": "Memory System",
+            "description": "Implement 'memory/RULES.md' and 'memory/MISTAKES.md' for self-correction.",
+            "status": "completed",
+            "priority": "high"
+        },
+        {
+            "id": "ACT-004",
+            "title": "Orchestrator Script",
+            "description": "Create 'scripts/orchestrate.sh' or similar to auto-spawn agents based on tasks.json status.",
+            "status": "pending",
+            "priority": "medium"
+        },
+        {
+            "id": "ACT-005",
+            "title": "Merge Safety",
+            "description": "Implement 'scripts/merge_agent.sh' that only merges worktrees if 'review_status' is approved.",
+            "status": "pending",
+            "priority": "high"
+        }
+    ]
+}
