@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  my_opencode_setup_client:
+    build: .
+    image: my_opencode_setup_client_image
+    container_name: my_opencode_setup_client_container
+    volumes:
+      # Persist OpenCode configuration and auth
+      - opencode_config:/home/agent/.config/opencode
+      # Mount the workspace
+      - ./workspace:/workspace
+    working_dir: /workspace
+    networks:
+      - my_opencode_setup_net
+    command: tail -f /dev/null
+    tty: true
+
+volumes:
+  opencode_config:
+
+networks:
+  my_opencode_setup_net:
+    driver: bridge
