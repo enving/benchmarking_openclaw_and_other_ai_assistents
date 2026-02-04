@@ -47,7 +47,8 @@
             export HOME="$ISOLATED_HOME"
             
             # WICHTIG: Display für GUIs (OCCM) durchreichen
-            export DISPLAY=${DISPLAY:-":0"}
+            # DOUBLE ESCAPED for Nix interpolation of shell syntax
+            export DISPLAY=''${DISPLAY:-":0"}
             
             # XDG-Verzeichnisse
             export XDG_CONFIG_HOME="$HOME/.config"
