@@ -1,0 +1,3 @@
+[submodule "opencode_src"]
+	path = opencode_src
+	url = https://github.com/anomalyco/opencode
