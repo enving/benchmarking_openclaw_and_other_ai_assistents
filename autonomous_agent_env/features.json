@@ -1,0 +1,46 @@
+[
+    {
+        "id": "feat-001",
+        "title": "Ralphy Integration",
+        "description": "Integration of Ralphy agent into the environment.",
+        "status": "planned",
+        "priority": "high",
+        "tags": [
+            "agent",
+            "integration"
+        ]
+    },
+    {
+        "id": "feat-002",
+        "title": "Replace Default Web Tools with Firecrawl",
+        "description": "Ensure OpenCode uses Firecrawl for web fetching and searching instead of default Exa/WebFetch tools.",
+        "status": "planned",
+        "priority": "medium",
+        "tags": [
+            "config",
+            "tools"
+        ]
+    },
+    {
+        "id": "feat-004",
+        "title": "Ralphy Integration: Wrapper Script",
+        "description": "Create a 'ralphy' wrapper script in the environment that orchestrates OpenCode using the 'opencode --approval-mode full-auto' command pattern found in ralphy.sh.",
+        "status": "completed",
+        "priority": "high",
+        "tags": [
+            "agent",
+            "orchestration"
+        ]
+    },
+    {
+        "id": "feat-005",
+        "title": "Ralphy Integration: PRD Standard",
+        "description": "Establish PRD.md (Markdown task list) as the standard input format for the agent loop, supporting the [ ] checklist syntax.",
+        "status": "completed",
+        "priority": "high",
+        "tags": [
+            "process",
+            "documentation"
+        ]
+    }
+]
