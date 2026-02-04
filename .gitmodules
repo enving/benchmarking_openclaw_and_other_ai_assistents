@@ -1,3 +1,6 @@
 [submodule "opencode_src"]
 	path = opencode_src
 	url = https://github.com/anomalyco/opencode
+[submodule "ralphy_src"]
+	path = ralphy_src
+	url = https://github.com/michaelshimeles/ralphy
