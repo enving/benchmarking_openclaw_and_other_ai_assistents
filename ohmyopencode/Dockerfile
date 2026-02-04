@@ -16,18 +16,17 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # OpenCode installieren (Basis)
-RUN curl -fsSL https://opencode.ai/install | bash && \
-    ln -s /root/.opencode/bin/opencode /usr/local/bin/opencode
+COPY --from=ghcr.io/anomalyco/opencode /usr/local/bin/opencode /usr/local/bin/opencode
 
 # Oh My OpenCode installieren
 RUN npm install -g oh-my-opencode
 
-# Langfuse-Plugin für Token-Tracking
-RUN npm install -g opencode-plugin-langfuse
+# Langfuse-Plugin & Antigravity Auth installieren
+RUN npm install -g opencode-plugin-langfuse opencode-antigravity-auth
 
-# OpenCode-Konfiguration mit Langfuse und OpenTelemetry
+# OpenCode-Konfiguration mit Langfuse, OpenTelemetry und Antigravity Auth
 RUN mkdir -p /root/.config/opencode && \
-    echo '{"plugin": ["opencode-plugin-langfuse"], "experimental": {"openTelemetry": true}}' > /root/.config/opencode/opencode.json
+    echo '{"plugin": ["opencode-plugin-langfuse", "opencode-antigravity-auth"], "experimental": {"openTelemetry": true}}' > /root/.config/opencode/opencode.json
 
 # Arbeitsverzeichnis erstellen
 WORKDIR /workspace

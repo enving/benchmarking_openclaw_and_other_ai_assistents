@@ -1,6 +1,7 @@
 # Isolierte Benchmark-Umgebung für OpenClaw mit Sandboxing
-# Nutzt Docker-in-Docker für OpenClaw's eingebautes Sandbox-Feature
-FROM docker:24-dind
+# Wir nutzen ein Debian Image (Bookworm) und installieren Docker manuell,
+# da Alpine (docker:dind) Probleme mit native Modules (node-llama-cpp) macht.
+FROM node:22-bookworm
 
 # Labels für eindeutige Identifikation
 LABEL project="benchmark" \
@@ -8,20 +9,29 @@ LABEL project="benchmark" \
       purpose="benchmark" \
       maintainer="coding_template"
 
-# Node.js und Basis-Tools installieren
-# make, g++, python3 sind nötig für node-llama-cpp Build
-RUN apk add --no-cache \
-    nodejs \
-    npm \
-    git \
+# Docker & Tools installieren (auf Debian Basis)
+RUN apt-get update && apt-get install -y \
+    ca-certificates \
     curl \
+    gnupg \
+    git \
     jq \
-    bash \
+    python3 \
     make \
     g++ \
-    cmake \
-    python3 \
-    linux-headers
+    && install -m 0755 -d /etc/apt/keyrings \
+    && curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg \
+    && chmod a+r /etc/apt/keyrings/docker.gpg \
+    && echo \
+      "deb [arch=\"$(dpkg --print-architecture)\" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+      $(. /etc/os-release && echo \"$VERSION_CODENAME\") stable" | \
+      tee /etc/apt/sources.list.d/docker.list > /dev/null \
+    && apt-get update \
+    && apt-get install -y docker-ce-cli docker-ce containerd.io docker-buildx-plugin docker-compose-plugin \
+    && rm -rf /var/lib/apt/lists/*
+
+# Dockerd Entrypoint Script simulieren/kopieren
+# Wir starten dockerd im Hintergrund via CMD
 
 # OpenClaw global installieren
 RUN npm install -g openclaw@latest
@@ -53,5 +63,5 @@ RUN echo 'echo ""' >> /root/.bashrc && \
     echo 'echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"' >> /root/.bashrc && \
     echo 'echo ""' >> /root/.bashrc
 
-# Docker-Daemon + Bash starten
-CMD ["sh", "-c", "dockerd-entrypoint.sh & sleep 2 && bash"]
+# Docker Daemon im Hintergrund starten & Shell öffnen
+CMD ["sh", "-c", "dockerd > /var/log/dockerd.log 2>&1 & sleep 3 && bash"]

@@ -53,14 +53,28 @@ if [ -f "$SCRIPT_DIR/.env" ]; then
 fi
 
 # --privileged ist nötig für Docker-in-Docker (OpenClaw Sandbox)
-# Die eigentliche Isolation passiert durch OpenClaw's Sandbox-Feature
-docker run -it --rm \
+# --network host ermöglicht OAuth Callbacks (dynamische Ports wie 51121)
+# Container läuft dauerhaft im Hintergrund (kein --rm)
+docker run -d \
     --privileged \
+    --network host \
     --name "$CONTAINER_NAME" \
     --label "project=benchmark" \
     --label "component=openclaw" \
     --label "purpose=benchmark" \
-    -p 31000:3000 \
-    "$IMAGE_NAME"
+    "$IMAGE_NAME" \
+    tail -f /dev/null
 
-echo "✅ Container '$CONTAINER_NAME' beendet und gelöscht."
+echo ""
+echo "✅ Container '$CONTAINER_NAME' läuft im Hintergrund."
+echo ""
+echo "📋 BEFEHLE:"
+echo "   sudo docker exec -it $CONTAINER_NAME bash   # Shell öffnen"
+echo "   sudo docker stop $CONTAINER_NAME            # Stoppen"
+echo "   sudo docker rm $CONTAINER_NAME              # Löschen"
+echo ""
+
+# Direkt in den Container springen
+echo "🚀 Öffne Shell im Container..."
+docker exec -it "$CONTAINER_NAME" bash
+
