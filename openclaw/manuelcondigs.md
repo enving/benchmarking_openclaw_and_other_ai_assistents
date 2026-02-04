@@ -47,7 +47,7 @@ OpenClaw onboarding
 │  Google Gemini API key
 │
 ◇  Enter Gemini API key
-│  AIzaSyDEQEHSAh1CSENwQxguEVFw06GB8neQCKo
+│  [REDACTED_API_KEY]
 │
 ◇  Model configured ─────────────────────────────────╮
 │                                                    │
