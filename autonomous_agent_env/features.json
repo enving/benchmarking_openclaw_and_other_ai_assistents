@@ -42,5 +42,28 @@
             "process",
             "documentation"
         ]
+    },
+    {
+        "id": "feat-006",
+        "title": "Ralphy as a Meta-Skill",
+        "description": "Implement a custom OpenCode Skill ('ralphy_skill') that allows the agent to spawn recursive sub-agents via the Ralphy wrapper. This enables the 'Manager Agent' to delegate sub-tasks (e.g., 'ralphy-wrapper.sh subtask-prd.md') to isolated worker instances, leveraging the parallel worktree architecture from the original Ralphy submodule.",
+        "status": "planned",
+        "priority": "high",
+        "tags": [
+            "architecture",
+            "meta-agent",
+            "skill"
+        ]
+    },
+    {
+        "id": "feat-007",
+        "title": "Firecrawl Advanced Configuration",
+        "description": "Optimize the Firecrawl Docker setup for production-grade scraping. Current setup is basic. Future work should investigate passing advanced flags (page options, wait_for) via the MCP tool arguments in 'opencode.json' or ensuring the Docker container has persistent caching enabled for efficiency.",
+        "status": "planned",
+        "priority": "medium",
+        "tags": [
+            "infrastructure",
+            "optimization"
+        ]
     }
 ]
