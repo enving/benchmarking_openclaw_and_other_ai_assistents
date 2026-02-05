@@ -7,7 +7,7 @@
 
 load test_helper
 
-HELLO_SCRIPT="$(dirname "$BATS_TEST_DIRNAME")/../scripts/hello.sh"
+HELLO_SCRIPT="$(dirname "$BATS_TEST_DIRNAME")/scripts/hello.sh"
 
 @test "hello.sh outputs 'hello' by default" {
     run "$HELLO_SCRIPT"
