@@ -1,0 +1,25 @@
+# Environment variables
+.env
+.env.*
+
+# Nix/direnv
+.direnv/
+.isolated_home/
+result
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+
+# Logs
+*.log
+
+# Temp
+.DS_Store
+
+# Cloned skill sources (use sync_skills.sh to update)
+references/skills-sources/
