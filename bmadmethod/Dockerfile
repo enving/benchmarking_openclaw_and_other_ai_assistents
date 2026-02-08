@@ -21,12 +21,12 @@ RUN npm install -g opencode
 # BMAD-METHOD installieren
 RUN npx -y bmad-method@latest --help || true
 
-# Langfuse-Plugin & Antigravity Auth installieren
-RUN npm install -g opencode-plugin-langfuse opencode-antigravity-auth
+# Langfuse-Plugin für Token-Tracking
+RUN npm install -g opencode-plugin-langfuse
 
-# OpenCode-Konfiguration mit Langfuse, OpenTelemetry und Antigravity Auth
+# OpenCode-Konfiguration mit Langfuse und OpenTelemetry
 RUN mkdir -p /root/.config/opencode && \
-    echo '{"plugin": ["opencode-plugin-langfuse", "opencode-antigravity-auth"], "experimental": {"openTelemetry": true}}' > /root/.config/opencode/opencode.json
+    echo '{"plugin": ["opencode-plugin-langfuse"], "experimental": {"openTelemetry": true}}' > /root/.config/opencode/opencode.json
 
 # Arbeitsverzeichnis erstellen
 WORKDIR /workspace

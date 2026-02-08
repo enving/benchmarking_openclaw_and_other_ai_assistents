@@ -21,12 +21,12 @@ COPY --from=ghcr.io/anomalyco/opencode /usr/local/bin/opencode /usr/local/bin/op
 # Oh My OpenCode installieren
 RUN npm install -g oh-my-opencode
 
-# Langfuse-Plugin & Antigravity Auth installieren
-RUN npm install -g opencode-plugin-langfuse opencode-antigravity-auth
+# Langfuse-Plugin für Token-Tracking
+RUN npm install -g opencode-plugin-langfuse
 
-# OpenCode-Konfiguration mit Langfuse, OpenTelemetry und Antigravity Auth
+# OpenCode-Konfiguration mit Langfuse und OpenTelemetry
 RUN mkdir -p /root/.config/opencode && \
-    echo '{"plugin": ["opencode-plugin-langfuse", "opencode-antigravity-auth"], "experimental": {"openTelemetry": true}}' > /root/.config/opencode/opencode.json
+    echo '{"plugin": ["opencode-plugin-langfuse"], "experimental": {"openTelemetry": true}}' > /root/.config/opencode/opencode.json
 
 # Arbeitsverzeichnis erstellen
 WORKDIR /workspace

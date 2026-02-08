@@ -14,7 +14,7 @@
         "id": "feat-002",
         "title": "Replace Default Web Tools with Firecrawl",
         "description": "Ensure OpenCode uses Firecrawl for web fetching and searching instead of default Exa/WebFetch tools.",
-        "status": "planned",
+        "status": "completed",
         "priority": "medium",
         "tags": [
             "config",

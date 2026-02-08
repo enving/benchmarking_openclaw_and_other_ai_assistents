@@ -54,7 +54,7 @@ Instructions:
 
     # Run OpenCode in full-auto mode
     # Assuming 'opencode' is in the PATH and configured via environment
-    opencode --approval-mode full-auto "$PROMPT"
+    opencode run "$PROMPT"
 
     # Check if task was actually marked done (simple verification)
     # We re-read the specific line to see if it changed
